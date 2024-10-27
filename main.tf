@@ -1,7 +1,16 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source = "telmate/proxmox"
+      version = "2.7.4"
+    }
+  }
+}
+
 provider "proxmox" {
  pm_api_url   = "https://192.168.1.70:8006/api2/json"
- pm_user      = "tf_user@pam!terraform"
- pm_password  = "563176d7-9ba2-4ec2-872d-1e40c8fa0e6e"
+ pm_user      = "terraform-prov@pve!mytoken"
+ pm_password  = "b2f49004-18cf-490a-8bee-3c89557a726b"
  pm_tls_insecure = true
 }
 
