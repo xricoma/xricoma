@@ -18,7 +18,14 @@ resource "proxmox_vm_qemu" "my_vm" {
  name       = "NETALERTX2"
  target_node = "kamel-server"
  clone      = "NETALERTX"
- storage    = "local-lvm"
  cores      = 2
  memory     = 2048
+ disk {
+    slot = 0
+    # set disk size here. leave it small for testing because expanding the disk takes time.
+    size = "10G"
+    type = "scsi"
+    storage    = "local-lvm"
+    iothread = 1
+}
 }
