@@ -2,15 +2,13 @@ terraform {
   required_providers {
     proxmox = {
       source = "telmate/proxmox"
-      version = "2.7.4"
+      version = "3.0.1-rc4"
     }
   }
 }
 
 provider "proxmox" {
  pm_api_url   = "https://192.168.1.70:8006/api2/json"
- PM_API_TOKEN_ID      = "terraform-prov@pve!mytoken"
- PM_API_TOKEN_SECRET  = "b2f49004-18cf-490a-8bee-3c89557a726b"
  pm_tls_insecure = true
 }
 
@@ -21,11 +19,10 @@ resource "proxmox_vm_qemu" "my_vm" {
  cores      = 2
  memory     = 2048
  disk {
-    slot = 0
-    # set disk size here. leave it small for testing because expanding the disk takes time.
+    slot = "scsi0"
     size = "10G"
-    type = "scsi"
+    type = "disk"
     storage    = "local-lvm"
-    iothread = 1
+    iothread = "true"
 }
 }
